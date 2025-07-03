@@ -1,0 +1,84 @@
+.header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.title-container p {
+  max-width: 800px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  overflow-x: auto;
+  text-wrap: nowrap;
+}
+
+.tabs button {
+  position: relative;
+  margin: 0 10px;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.tabs button.active,
+.tabs button:hover {
+  font-weight: 600;
+  color: blue;
+}
+
+.tabs button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: blue;
+  transition: width 0.3s ease;
+}
+
+.tabs button:hover::before {
+  width: 100%;
+  background-color: blue;
+}
+
+.tabs button.active::before {
+  width: 100%;
+}
+
+.tab-content {
+  padding: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    text-align: center;
+  }
+
+  .title-container {
+    padding: 1rem;
+  }
+}
