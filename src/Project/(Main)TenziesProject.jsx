@@ -9,9 +9,6 @@ export default function TenziesProject() {
     const gameWon = dice.every(die => die.isClicked) && 
                     dice.every(die => die.value === dice[0].value);
 
-    const gameLost = dice.every(die => die.isClicked) && 
-                    !dice.every(die => die.value === dice[0].value);
-
     function generateAllNewDice () {
         const newDice = [];
 
@@ -28,12 +25,13 @@ export default function TenziesProject() {
     }
 
     function rollDice() {   
-         if (gameWon || gameLost) {
-            setDice(generateAllNewDice());
-        } else {
+        if (!gameWon) {
             setDice(oldDice => oldDice.map(die =>
-            die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) }
-            ));
+                die.isClicked ? die : { ...die, value: Math.ceil(Math.random() * 6) } 
+            ));    
+        }
+        else {
+            setDice(generateAllNewDice());
         }
     }
 
@@ -57,18 +55,16 @@ export default function TenziesProject() {
         <div className="project-container">
             <main>
                 <h1 className="title">
-                    {gameWon ? "You Won!" : gameLost ? "You Lost!" : "Tenzies"}
+                    {gameWon ? "Congrats, You Won!" : "Tenzies"} 
                 </h1>
-                <p className="instructions">
-                    Your goal: make all 10 dice show the same number. Click a die to freeze it, then roll again. Strategize, lock in, and win!
-                </p>
+                <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
 
                 <div className="dice-container">
                     {diceElements}
                 </div>
 
                 <button className="roll-dice-btn" onClick={rollDice}>
-                    {gameWon || gameLost ? "New Game" : "Roll"}
+                    {gameWon ? "New Game" : "Roll"}
                 </button>
             </main>
         </div>
