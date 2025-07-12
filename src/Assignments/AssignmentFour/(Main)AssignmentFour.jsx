@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./AssignmentFour.css";
+import "./AssignmentFour.css"; // Import CSS
 
 function AssignmentFour() {
   const [regions, setRegions] = useState([]);
@@ -58,7 +58,9 @@ function AssignmentFour() {
     setCities([]);
 
     if (provinceCode) {
-      fetch(`https://psgc.cloud/api/provinces/${provinceCode}/cities-municipalities`)
+      fetch(
+        `https://psgc.cloud/api/provinces/${provinceCode}/cities-municipalities`
+      )
         .then((response) => response.json())
         .then((data) => setCities(data || []))
         .catch((error) => console.error("Error fetching cities:", error));
@@ -79,7 +81,13 @@ function AssignmentFour() {
   };
 
   const handleConfirm = () => {
-    if (!selectedRegion || !selectedProvince || !selectedCity || !selectedBarangay || !zipCode) {
+    if (
+      !selectedRegion ||
+      !selectedProvince ||
+      !selectedCity ||
+      !selectedBarangay ||
+      !zipCode
+    ) {
       alert("Please fill out all required fields.");
       return;
     }
@@ -109,11 +117,24 @@ function AssignmentFour() {
       <div className="address-wrapper">
         <div className="title-container">
           <h1>My Address</h1>
+          <p>
+            {" "}
+            Explore conditional rendering by fetching address details from an
+            external API. The data is displayed only when successfully
+            retrieved, showcasing how to handle loading states, API errors, and
+            dynamic UI updates effectively.
+          </p>
         </div>
-        {displayAddress && (<div className="address-display">{displayAddress}</div>) }
+        {displayAddress && (
+          <div className="address-display">{displayAddress}</div>
+        )}
         <div className="form-group">
           <label htmlFor="region">Region</label>
-          <select id="region" value={selectedRegion} onChange={handleRegionChange}>
+          <select
+            id="region"
+            value={selectedRegion}
+            onChange={handleRegionChange}
+          >
             <option value="">Select a Region</option>
             {regions.map((region) => (
               <option key={region.code} value={region.code}>
@@ -124,7 +145,11 @@ function AssignmentFour() {
         </div>
         <div className="form-group">
           <label htmlFor="province">Province</label>
-          <select id="province" value={selectedProvince} onChange={handleProvinceChange}>
+          <select
+            id="province"
+            value={selectedProvince}
+            onChange={handleProvinceChange}
+          >
             <option value="">Select a Province</option>
             {provinces.map((province) => (
               <option key={province.code} value={province.code}>
@@ -161,11 +186,21 @@ function AssignmentFour() {
         </div>
         <div className="form-group">
           <label htmlFor="zipCode">ZIP Code</label>
-          <input id="zipCode" type="text" value={zipCode} onChange={(e) => setZipCode(e.target.value)}/>
+          <input
+            id="zipCode"
+            type="text"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+          />
         </div>
         <div className="form-group">
           <label htmlFor="otherAddress">Other Address (Optional)</label>
-          <input id="otherAddress" type="text" value={otherAddress} onChange={(e) => setOtherAddress(e.target.value)}/>
+          <input
+            id="otherAddress"
+            type="text"
+            value={otherAddress}
+            onChange={(e) => setOtherAddress(e.target.value)}
+          />
         </div>
         <button onClick={handleConfirm}>Confirm</button>
       </div>
