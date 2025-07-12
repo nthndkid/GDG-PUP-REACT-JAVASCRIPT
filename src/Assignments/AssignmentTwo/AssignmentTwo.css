@@ -32,6 +32,33 @@
   color: #333;
 }
 
+.tech-stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0;
+  justify-content: center;
+  list-style: none;
+}
+
+.tech-stack-list li {
+  background-color: #2d2d2d;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.tech-stack-list li:hover {
+  background-color: #444;
+}
+
+
+
 @media (max-width: 768px) {
   .box-container {
     flex-direction: column;
